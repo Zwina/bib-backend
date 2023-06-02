@@ -2,6 +2,9 @@
 var express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+
+require('dotenv').config();
+
 const HttpError = require("./utils/http-errors")
 const cors = require('cors');
 
@@ -44,7 +47,9 @@ mongoose.set('strictQuery', true)
 
 mongoose.connect(uri)
     .then(() => {
-        app.listen(5000), console.log("Server running");
+        //app.listen(5000), 
+        app.listen(process.env.PORT);
+        console.log("Server running");
     })
     .catch(err => {
         console.log("err");
